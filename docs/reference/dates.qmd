@@ -18,13 +18,27 @@ When you write a date for Quarto document, Quarto will attempt to parse a date s
 -   `MM dd, yyyy`
 -   `YYYY-MM-DDTHH:mm:ssZ`
 
+We recommend using the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format `yyyy-MM-dd` to help:
+
+> remove doubts that can result from the various day–date conventions, cultures and time zones that impact a global operation
+
 In addition, you may also provide date keywords, which will provide a dynamic date.
 
 | Keyword         | Date                                                             |
-|-----------------|-------------------------------------------------------|
+|-----------------|------------------------------------------------------------------|
 | `today`         | The current local date, with the time portion set to 0.          |
 | `now`           | The current local date and time.                                 |
 | `last-modified` | The last modified date and time of the file containing the date. |
+
+### Why Use ISO 8601
+
+According to [John Gruber](https://daringfireball.net/projects/markdown/)
+
+> The idea is that a Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions.
+
+When viewing dates within a plain text file the metadata string `07/03/2005` could be interpreted by the reader as "3rd July 2005" or "7th March 2005" depending on their location or cultural origin.
+
+For the same reason, it is suggested *not* to use the `short` style when formatting date outputs.
 
 ## Date Formatting
 
@@ -38,20 +52,22 @@ For example:
 
 ``` yaml
 ---
-date: 03/07/2005
+date: 2005-03-07
 date-format: long
 ---
 ```
 
 Valid styles and examples of the formatted output are as follows:
 
-| Style    | Description                                 | Example               |
-|----------------|--------------------------------------|-------------------|
-| `full`   | A full date that includes the weekday name  | Monday, March 7, 2005 |
-| `long`   | A long date that includes a wide month name | March 7, 2005         |
-| `medium` | A medium date                               | Mar 7, 2005           |
-| `short`  | A short date with a numeric month           | 3/7/05                |
-| `iso`    | A short date in ISO format                  | 2005-03-07            |
+| Style     | Description                                 | Example               |
+|-----------|---------------------------------------------|-----------------------|
+| `full`    | A full date that includes the weekday name  | Monday, March 7, 2005 |
+| `long`    | A long date that includes a wide month name | March 7, 2005         |
+| `medium`  | A medium date                               | Mar 7, 2005           |
+| `short`   | A short date with a numeric month           | 3/7/05                |
+| `iso`     | A short date in ISO format                  | 2005-03-07            |
+
+Using a `short` date style is not recommended.
 
 ### Using a Date Format
 
@@ -59,7 +75,7 @@ You can also specify a date format string that will be used to format the date. 
 
 ``` yaml
 ---
-date: 03/07/2005
+date: 2005-03-07
 date-format: "MMM D, YYYY"
 ```
 
